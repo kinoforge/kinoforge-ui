@@ -2,7 +2,7 @@
 
 [![Website](https://img.shields.io/badge/website-kinoforge.dev-7c3aed)](https://kinoforge.dev)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Last commit](https://img.shields.io/github/last-commit/videogpt-dev/videogpt-ui)](https://github.com/videogpt-dev/videogpt-ui/commits/main)
+[![Last commit](https://img.shields.io/github/last-commit/kinoforge/kinoforge-ui)](https://github.com/kinoforge/kinoforge-ui/commits/main)
 ![React](https://img.shields.io/badge/react-19-61DAFB?logo=react&logoColor=black)
 
 Customizable React design system for Kinoforge products.
