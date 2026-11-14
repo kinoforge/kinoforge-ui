@@ -29,21 +29,21 @@ Designed as a public base layer. Products can compose these components and add p
 without coupling private logic to this package.
 
 ```bash
-vp run @videogpt/ui#build
-vp run @videogpt/ui#pack
-vp run @videogpt/ui#test
+vp run @kinoforge/ui#build
+vp run @kinoforge/ui#pack
+vp run @kinoforge/ui#test
 ```
 
 Add more shadcn primitives from repository root:
 
 ```bash
-vp dlx shadcn@latest add <component> --cwd packages/videogpt-ui --yes
+vp dlx shadcn@latest add <component> --cwd packages/kinoforge-ui --yes
 ```
 
 Consumers import library CSS once:
 
 ```tsx
-import "@videogpt/ui/styles.css";
+import "@kinoforge/ui/styles.css";
 ```
 
 Theme `--vui-*` CSS variables can be overridden at application or component scope.

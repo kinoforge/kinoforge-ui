@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for taking the time. This repo is `@videogpt/ui`, the open React design system behind
+Thanks for taking the time. This repo is `@kinoforge/ui`, the open React design system behind
 [kinoforge.dev](https://kinoforge.dev) and its self-host edition. Bug reports, fixes, new
 components and improvements to the flow canvas are all welcome.
 
@@ -17,13 +17,13 @@ The package is developed inside a workspace that pins it as a submodule. The sim
 the self-host edition:
 
 ```sh
-git clone --recurse-submodules https://github.com/videogpt-dev/videogpt-ce.git
-cd videogpt-ce
+git clone --recurse-submodules https://github.com/kinoforge/kinoforge-ce.git
+cd kinoforge-ce
 pnpm install
-cd packages/videogpt-ui
+cd packages/kinoforge-ui
 ```
 
-Then, from `packages/videogpt-ui`:
+Then, from `packages/kinoforge-ui`:
 
 ```sh
 vp test            # unit tests

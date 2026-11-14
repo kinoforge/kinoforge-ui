@@ -5,7 +5,7 @@
 Please do not open a public issue for a security problem.
 
 Report it privately through GitHub's
-[private vulnerability reporting](https://github.com/videogpt-dev/videogpt-ui/security/advisories/new),
+[private vulnerability reporting](https://github.com/kinoforge/kinoforge-ui/security/advisories/new),
 or email **security@kinoforge.dev**.
 
 Include enough to reproduce: the affected version or commit, steps, and the impact you saw.
