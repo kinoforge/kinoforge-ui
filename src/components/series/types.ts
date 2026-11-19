@@ -20,7 +20,6 @@ export interface SeriesDraft {
   aspectRatio: string;
   language: string;
   resolution: number;
-  mature: boolean;
 }
 
 export type SeriesEpisodeStatus = "draft" | "queued" | "generating" | "ready" | "failed";
@@ -57,7 +56,6 @@ export interface SeriesCreateCopy {
   aspectLabel: string;
   languageLabel: string;
   resolutionLabel: string;
-  matureLabel: string;
   submit: string;
   submitting: string;
 }
@@ -107,7 +105,6 @@ export class SeriesCatalog {
     aspectLabel: "Aspect ratio",
     languageLabel: "Narration language",
     resolutionLabel: "Resolution",
-    matureLabel: "Mature audience",
     submit: "Create series",
     submitting: "Creating...",
   };

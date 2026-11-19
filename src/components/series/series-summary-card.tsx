@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { Layers, ListVideo } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { SeriesSummary } from "./types";
@@ -47,7 +46,6 @@ export function SeriesSummaryCard({
           <span className="truncate text-sm font-semibold text-foreground">
             {series.name || "Untitled series"}
           </span>
-          {series.mature ? <Badge variant="destructive">Mature</Badge> : null}
         </span>
         {series.premise ? (
           <span className="line-clamp-2 text-xs text-muted-foreground">{series.premise}</span>

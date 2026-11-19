@@ -5,7 +5,6 @@ import type { SelectOption } from "@/components/forms/types";
 import { CardDescription, CardTitle } from "@/components/ui/card";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { MediaOptions, type RenderEngine } from "@/lib/media-options";
 import { cn } from "@/lib/utils";
@@ -125,15 +124,6 @@ export function SeriesBriefFields({
 
       {extraFieldsSlot}
 
-      <label className="flex items-center gap-3 text-sm" htmlFor="series-mature">
-        <Switch
-          id="series-mature"
-          checked={draft.mature}
-          onCheckedChange={(mature) => onChange({ mature })}
-        />
-        {copy.matureLabel}
-        {draft.mature ? <input type="hidden" name="mature" value="on" /> : null}
-      </label>
     </div>
   );
 }

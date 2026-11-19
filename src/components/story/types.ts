@@ -40,7 +40,6 @@ export interface StoryDraft {
   genre: string;
   engine: RenderEngine;
   agentId: string;
-  mature: boolean;
   enhance: boolean;
 }
 
@@ -57,7 +56,6 @@ export interface StoryCreateCopy {
   engineLabel: string;
   genreLabel: string;
   genrePlaceholder: string;
-  matureLabel: string;
   enhanceLabel: string;
   agentLabel: string;
   submit: string;
@@ -97,7 +95,6 @@ export class StoryCatalog {
     engineLabel: "Render",
     genreLabel: "Genre (optional)",
     genrePlaceholder: "Thriller, documentary...",
-    matureLabel: "Mature audience",
     enhanceLabel: "Enhance prompts before generating",
     agentLabel: "Screenwriter",
     submit: "Write story",
