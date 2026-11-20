@@ -31,7 +31,7 @@ export function FlowCreateForm({
   const [title, setTitle] = useState("");
   return (
     <form
-      className="flex flex-wrap items-center gap-2"
+      className="flex w-full items-center gap-2 sm:w-auto"
       onSubmit={(e) => {
         e.preventDefault();
         onCreate(title, starts[0]?.start);
@@ -42,7 +42,7 @@ export function FlowCreateForm({
         placeholder={placeholder}
         maxLength={120}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-48"
+        className="min-w-0 flex-1 sm:w-48 sm:flex-none"
       />
       {starts.length ? (
         starts.map((choice, i) => (
@@ -50,6 +50,7 @@ export function FlowCreateForm({
             key={choice.start}
             type="button"
             variant={i === 0 ? "default" : "secondary"}
+            className="shrink-0"
             disabled={busy}
             title={choice.hint}
             onClick={() => onCreate(title, choice.start)}
