@@ -205,11 +205,6 @@ export interface FlowStyleOption {
   name: string;
 }
 
-export interface FlowStartOption {
-  start: string;
-  label: string;
-}
-
 export interface FlowDraft {
   title: string;
   graph: FlowGraph;

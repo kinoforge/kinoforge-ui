@@ -10,57 +10,66 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { OptionSelect } from "@/components/forms/option-select";
 import { Input } from "@/components/ui/input";
 
-import type { FlowListItem, FlowStartOption } from "./types";
+import type { FlowListItem } from "./types";
 
-const BLANK = "blank";
-
-/** The name field, the ready flow to start from (blank unless one is picked) and the button. */
+/** A button that opens the name field, then asks to start from the default flow or a blank one. */
 export function FlowCreateForm({
   label,
   placeholder,
-  starts = [],
+  preset,
   busy,
   onCreate,
 }: {
   label: string;
   placeholder: string;
-  starts?: FlowStartOption[];
+  preset?: boolean;
   busy?: boolean;
-  onCreate: (title: string, start?: string) => void;
+  onCreate: (title: string, preset: boolean) => void;
 }) {
+  const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
-  const [start, setStart] = useState(BLANK);
+  if (!open) {
+    return (
+      <Button type="button" onClick={() => setOpen(true)}>
+        {label}
+      </Button>
+    );
+  }
   return (
     <form
       className="flex w-full items-center gap-2 sm:w-auto"
       onSubmit={(e) => {
         e.preventDefault();
-        onCreate(title, start === BLANK ? undefined : start);
+        const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+        onCreate(title, submitter?.value === "default");
       }}
     >
       <Input
+        autoFocus
         value={title}
         placeholder={placeholder}
         maxLength={120}
         onChange={(e) => setTitle(e.target.value)}
         className="min-w-0 flex-1 sm:w-48 sm:flex-none"
       />
-      {starts.length ? (
-        <OptionSelect
-          className="w-auto shrink-0"
-          value={start}
-          onValueChange={setStart}
-          options={[
-            { value: BLANK, label: "Blank" },
-            ...starts.map((choice) => ({ value: choice.start, label: choice.label })),
-          ]}
-        />
+      {preset ? (
+        <Button type="submit" value="default" className="shrink-0" disabled={busy}>
+          Use default
+        </Button>
       ) : null}
-      <Button type="submit" className="shrink-0" disabled={busy}>
-        {label}
+      <Button
+        type="submit"
+        value="blank"
+        variant={preset ? "outline" : "default"}
+        className="shrink-0"
+        disabled={busy}
+      >
+        {preset ? "Blank" : label}
+      </Button>
+      <Button type="button" variant="ghost" className="shrink-0" onClick={() => setOpen(false)}>
+        Cancel
       </Button>
     </form>
   );
