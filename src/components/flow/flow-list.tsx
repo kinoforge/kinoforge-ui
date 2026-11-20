@@ -10,11 +10,14 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { OptionSelect } from "@/components/forms/option-select";
 import { Input } from "@/components/ui/input";
 
 import type { FlowListItem, FlowStartOption } from "./types";
 
-/** The name field and a button per ready flow a new one may start from. */
+const BLANK = "blank";
+
+/** The name field, the ready flow to start from (blank unless one is picked) and the button. */
 export function FlowCreateForm({
   label,
   placeholder,
@@ -29,12 +32,13 @@ export function FlowCreateForm({
   onCreate: (title: string, start?: string) => void;
 }) {
   const [title, setTitle] = useState("");
+  const [start, setStart] = useState(BLANK);
   return (
     <form
       className="flex w-full items-center gap-2 sm:w-auto"
       onSubmit={(e) => {
         e.preventDefault();
-        onCreate(title, starts[0]?.start);
+        onCreate(title, start === BLANK ? undefined : start);
       }}
     >
       <Input
@@ -45,24 +49,19 @@ export function FlowCreateForm({
         className="min-w-0 flex-1 sm:w-48 sm:flex-none"
       />
       {starts.length ? (
-        starts.map((choice, i) => (
-          <Button
-            key={choice.start}
-            type="button"
-            variant={i === 0 ? "default" : "secondary"}
-            className="shrink-0"
-            disabled={busy}
-            title={choice.hint}
-            onClick={() => onCreate(title, choice.start)}
-          >
-            {choice.label}
-          </Button>
-        ))
-      ) : (
-        <Button type="submit" disabled={busy}>
-          {label}
-        </Button>
-      )}
+        <OptionSelect
+          className="w-auto shrink-0"
+          value={start}
+          onValueChange={setStart}
+          options={[
+            { value: BLANK, label: "Blank" },
+            ...starts.map((choice) => ({ value: choice.start, label: choice.label })),
+          ]}
+        />
+      ) : null}
+      <Button type="submit" className="shrink-0" disabled={busy}>
+        {label}
+      </Button>
     </form>
   );
 }

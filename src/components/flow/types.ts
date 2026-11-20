@@ -208,7 +208,6 @@ export interface FlowStyleOption {
 export interface FlowStartOption {
   start: string;
   label: string;
-  hint: string;
 }
 
 export interface FlowDraft {

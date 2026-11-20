@@ -64,7 +64,6 @@ type Sheet = (typeof Sheet)[keyof typeof Sheet];
 export interface FlowEditorProps {
   title: string;
   graph: FlowGraph;
-  /** A series' episodes; a flow that is not a series leaves it out. */
   episodes?: FlowEpisode[];
   specs: FlowNodeSpec[];
   models: FlowModels;
@@ -126,7 +125,6 @@ function FlowCanvas({
     () => Object.fromEntries(specList.map((s) => [s.type, s])),
     [specList],
   );
-  const series = initialEpisodes !== undefined;
   const [title, setTitle] = useState(initialTitle);
   const [episodes, setEpisodes] = useState<FlowEpisode[]>(initialEpisodes ?? []);
   const [nodes, setNodes, onNodesChange] = useNodesState<FlowCanvasNode>(
@@ -163,6 +161,7 @@ function FlowCanvas({
     [title, graph, episodes],
   );
   const counts = useMemo(() => FlowCounts.of(graph), [graph]);
+  const series = (counts.get(FlowNodeType.Episode) ?? 0) > 0;
   const issues = useMemo<FlowIssue[]>(() => {
     const own = FlowRules.issues(specs, graph);
     return own.length ? own : (saveAnswer?.check?.issues ?? []);
@@ -370,7 +369,7 @@ function FlowCanvas({
 
   const palette = (
     <FlowPalette
-      specs={series ? specList : specList.filter((s) => s.type !== FlowNodeType.Episode)}
+      specs={specList}
       counts={counts}
       onAdd={(type) => {
         const placed = place(type, middle());
